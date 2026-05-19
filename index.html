@@ -1,262 +1,1049 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohitha Cherukuvada | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        primary: '#0f172a', 
-                        secondary: '#1e293b', 
-                        accent: '#38bdf8', 
-                        accentHover: '#0ea5e9',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 4px; }
-        
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rohitha Cherukuvada — AI & Data Science</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #060810;
+      --bg2: #0c0f1a;
+      --bg3: #111525;
+      --surface: #161b2e;
+      --surface2: #1e2540;
+      --border: #252d47;
+      --accent: #4f8dff;
+      --accent2: #7c3aed;
+      --accent3: #06d6a0;
+      --text: #e8eaf6;
+      --text2: #9aa3c2;
+      --text3: #5c6687;
+      --glow: rgba(79,141,255,0.15);
+      --glow2: rgba(124,58,237,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,141,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,141,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(6,8,16,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 8rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    h1 .name-highlight {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 500;
+      color: var(--text2);
+      margin: 1.2rem 0 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      color: var(--text2);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-num span { color: var(--accent); }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-top: 0.3rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.25s;
+      box-shadow: 0 0 30px rgba(79,141,255,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #3a7aff;
+      box-shadow: 0 0 50px rgba(79,141,255,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--text2);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      transition: all 0.25s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text2);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      line-height: 1.85;
+    }
+
+    .about-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.9rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .detail-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      min-width: 80px;
+    }
+
+    .detail-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .detail-value.highlight { color: var(--accent3); font-weight: 500; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px var(--glow);
+    }
+
+    .skill-card:hover::before { opacity: 1; }
+
+    .skill-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.3rem 0.7rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text2);
+      transition: all 0.2s;
+    }
+
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .exp-card::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+    }
+
+    .exp-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 40px var(--glow);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .exp-role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .exp-company {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+      background: var(--bg3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      margin-top: 1.2rem;
+    }
+
+    .exp-bullets li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: var(--text2);
+      font-size: 0.92rem;
+      font-weight: 300;
+      margin-bottom: 0.6rem;
+      line-height: 1.7;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent3);
+      font-size: 0.75rem;
+      top: 0.25rem;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: var(--glow);
+      transition: all 0.4s;
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 50px var(--glow);
+    }
+
+    .project-card:hover::before {
+      width: 260px; height: 260px;
+      top: -100px; right: -100px;
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      background: rgba(79,141,255,0.1);
+      border: 1px solid rgba(79,141,255,0.3);
+      border-radius: 3px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .project-badge.green {
+      background: rgba(6,214,160,0.1);
+      border-color: rgba(6,214,160,0.3);
+      color: var(--accent3);
+    }
+
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .project-subtitle {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text3);
+      margin-bottom: 1rem;
+    }
+
+    .project-desc {
+      color: var(--text2);
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .stack-tag {
+      padding: 0.2rem 0.6rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text3);
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .achievements-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .achievement-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.4rem 1.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .achievement-item:hover {
+      border-color: var(--accent);
+      transform: translateX(6px);
+      box-shadow: -4px 0 30px var(--glow);
+    }
+
+    .achievement-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .achievement-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .achievement-desc {
+      font-size: 0.88rem;
+      color: var(--text2);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-intro {
+      color: var(--text2);
+      max-width: 480px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 1.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text2);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      transition: all 0.25s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px var(--glow);
+    }
+
+    .contact-icon { font-size: 1.1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: rgba(79,141,255,0.07);
+      top: -100px; right: -100px;
+    }
+
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: rgba(124,58,237,0.06);
+      bottom: 20%; left: -150px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: var(--accent);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+    .delay-4 { animation-delay: 0.55s; }
+    .delay-5 { animation-delay: 0.7s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 7rem 1.5rem 4rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    }
+  </style>
 </head>
-<body class="bg-primary text-slate-300 font-sans leading-relaxed selection:bg-accent selection:text-white">
+<body>
 
-    <nav class="fixed w-full z-50 glass-card border-b border-slate-700/50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white tracking-tighter">RC<span class="text-accent">.</span></a>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#about" class="hover:text-accent transition">About</a>
-                <a href="#experience" class="hover:text-accent transition">Experience</a>
-                <a href="#projects" class="hover:text-accent transition">Projects</a>
-                <a href="#skills" class="hover:text-accent transition">Skills</a>
-                <a href="#contact" class="hover:text-accent transition">Contact</a>
-            </div>
+  <!-- Ambient orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a class="nav-logo" href="#">RC<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <p class="hero-tag fade-up delay-1">Available for Internships & Collaborations</p>
+    <h1 class="fade-up delay-2">
+      <span class="name-highlight">Rohitha</span><br>Cherukuvada
+    </h1>
+    <p class="hero-subtitle fade-up delay-3">
+      AI &amp; Data Science Engineer<span class="cursor"></span>
+    </p>
+    <p class="hero-desc fade-up delay-4">
+      B.Tech student specializing in Artificial Intelligence &amp; Data Science. I build data-driven solutions — from analyzing millions of records to full-stack applications.
+    </p>
+    <div class="hero-stats fade-up delay-4">
+      <div class="stat">
+        <span class="stat-num">9.39<span>/10</span></span>
+        <span class="stat-label">Current CGPA</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1.8<span>M+</span></span>
+        <span class="stat-label">Records Analyzed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2<span>+</span></span>
+        <span class="stat-label">Projects Shipped</span>
+      </div>
+    </div>
+    <div class="hero-cta fade-up delay-5">
+      <a href="RESUME.pdf" target="_blank" class="btn-primary">
+        ↓ Download Resume
+      </a>
+      <a href="#contact" class="btn-secondary">
+        Get in Touch →
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a 4th-year B.Tech student pursuing Computer Science Engineering with a specialization in Artificial Intelligence &amp; Data Science at Shri Vishnu Engineering College for Women, Bhimavaram.</p>
+        <p>My work lives at the intersection of data analysis, machine learning, and full-stack development. I've worked on national-scale datasets through the UIDAI Hackathon 2026 and gained industry exposure through my internship at Qentelli.</p>
+        <p>Beyond technical work, I'm an active member of ACM and GDG — contributing to the tech community through events, hackathons, and collaborative problem-solving.</p>
+      </div>
+      <div class="about-details">
+        <div class="detail-row">
+          <span class="detail-label">Degree</span>
+          <span class="detail-value">B.Tech – CSE (AI & DS)</span>
         </div>
-    </nav>
-
-    <section class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-        <div class="absolute top-20 left-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl filter opacity-30 animate-pulse"></div>
-        
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 class="text-accent font-medium mb-4 tracking-wide">HELLO, I'M</h2>
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Rohitha Cherukuvada</h1>
-            <p class="text-xl md:text-2xl text-slate-400 mb-8 max-w-2xl mx-auto">
-                Computer Science Engineer (AI & Data Science) building secure web apps and predictive models.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#projects" class="bg-accent text-primary px-8 py-3 rounded-full font-bold hover:bg-accentHover transition shadow-lg shadow-accent/20">
-                    View My Work
-                </a>
-                <a href="RESUME.pdf" download="Rohitha_Cherukuvada_Resume.pdf" class="border border-slate-600 px-8 py-3 rounded-full font-medium hover:border-accent hover:text-accent transition flex items-center gap-2">
-                    <i class="fas fa-download"></i> Download Resume
-                </a>
-            </div>
-            
-            <div class="mt-12 flex justify-center gap-6 text-2xl text-slate-400">
-                <a href="https://www.linkedin.com/in/rohitha-cherukuvada-6168b3318" target="_blank" class="hover:text-white hover:-translate-y-1 transition"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Rohitha-cherukuvada" target="_blank" class="hover:text-white hover:-translate-y-1 transition"><i class="fab fa-github"></i></a>
-            </div>
+        <div class="detail-row">
+          <span class="detail-label">College</span>
+          <span class="detail-value">SVECW, Bhimavaram</span>
         </div>
-    </section>
-
-    <section id="about" class="py-20 bg-secondary/30">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-3xl font-bold text-white mb-6"><span class="text-accent">01.</span> About Me</h2>
-                <p class="mb-4">
-                    I am a B.Tech student specializing in <strong class="text-white">Artificial Intelligence and Data Science</strong> at Shri Vishnu Engineering College for Women. With a current <strong class="text-accent">CGPA of 9.39</strong>, I combine academic excellence with practical problem-solving.
-                </p>
-                <p class="mb-6">
-                    My passion lies in bridging the gap between Data Science and Full Stack Development. Whether it's predicting customer behavior with ML or building secure academic dashboards, I love creating impactful solutions.
-                </p>
-                <div class="flex gap-4">
-                    <div class="border-l-2 border-accent pl-4">
-                        <h4 class="text-white font-bold">B.Tech (CSE - AIDS)</h4>
-                        <p class="text-sm text-slate-400">Expected 2027</p>
-                    </div>
-                    <div class="border-l-2 border-slate-600 pl-4">
-                        <h4 class="text-white font-bold">Class XII</h4>
-                        <p class="text-sm text-slate-400">85% | CBSE</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="glass-card p-8 rounded-2xl relative">
-                <h3 class="text-xl font-bold text-white mb-4">Achievements</h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-trophy text-accent mt-1"></i>
-                        <span>Submitted a full project in the <strong>UIDAI Data Hackathon 2026</strong>.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-users text-accent mt-1"></i>
-                        <span><strong>ACM-W Core Team Member</strong> for organizing "Visualize the Invisible".</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-code-branch text-accent mt-1"></i>
-                        <span>Developed a working prototype in the <strong>GDG Internal Hackathon</strong>.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-chart-line text-accent mt-1"></i>
-                        <span>Built interactive dashboards using <strong>Tableau</strong> for Deloitte Job Simulation.</span>
-                    </li>
-                </ul>
-            </div>
+        <div class="detail-row">
+          <span class="detail-label">CGPA</span>
+          <span class="detail-value highlight">9.39 / 10.0</span>
         </div>
-    </section>
-
-    <section id="experience" class="py-20">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white mb-12 text-center"><span class="text-accent">02.</span> Experience</h2>
-            <div class="relative border-l border-slate-700 ml-4 md:ml-0 pl-8 md:pl-12 space-y-12">
-                <div class="relative">
-                    <span class="absolute -left-[41px] md:-left-[57px] top-1 h-5 w-5 rounded-full border-4 border-primary bg-accent"></span>
-                    <h3 class="text-xl font-bold text-white">Software Testing Intern</h3>
-                    <p class="text-accent mb-2">Qentelli | May 2025 - Jul 2025</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-400 mt-4">
-                        <li>Trained on <strong>AccelQ automation testing framework</strong> with focus on test case design and result analysis.</li>
-                        <li>Learned industry-standard QA workflows and defect life cycle in a corporate environment.</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="detail-row">
+          <span class="detail-label">Graduating</span>
+          <span class="detail-value">2027</span>
         </div>
-    </section>
-
-    <section id="projects" class="py-20 bg-secondary/30">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white mb-12"><span class="text-accent">03.</span> Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-card rounded-xl p-6 hover:-translate-y-2 transition duration-300 group">
-                    <div class="flex justify-between items-center mb-4">
-                        <i class="fas fa-brain text-4xl text-accent/80 group-hover:text-accent transition"></i>
-                        <span class="text-[10px] font-mono text-slate-500 uppercase">JAN 2026</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Reward Recommendation System</h3>
-                    <p class="text-sm text-slate-400 mb-4 h-24 overflow-hidden">
-                        Personalized credit card rewards using K-Means clustering and concept drift detection.
-                    </p>
-                    <div class="flex flex-wrap gap-2 text-xs font-mono text-accent">
-                        <span>Python</span><span>Scikit-learn</span><span>A/B Testing</span>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-xl p-6 hover:-translate-y-2 transition duration-300 group">
-                    <div class="flex justify-between items-center mb-4">
-                        <i class="fas fa-fingerprint text-4xl text-accent/80 group-hover:text-accent transition"></i>
-                        <span class="text-[10px] font-mono text-slate-500 uppercase">UIDAI 2026</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Aadhaar Stress Analysis</h3>
-                    <p class="text-sm text-slate-400 mb-4 h-24 overflow-hidden">
-                        Detected biometric workload surges using anomaly indices (BUIS/DSI) and heatmaps.
-                    </p>
-                    <div class="flex flex-wrap gap-2 text-xs font-mono text-accent">
-                        <span>Time-Series</span><span>Pandas</span><span>Data Viz</span>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-xl p-6 hover:-translate-y-2 transition duration-300 group">
-                    <div class="flex justify-between items-center mb-4">
-                        <i class="fas fa-calendar-alt text-4xl text-accent/80 group-hover:text-accent transition"></i>
-                        <span class="text-[10px] font-mono text-slate-500 uppercase">NOV 2025</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Timetable Dashboard</h3>
-                    <p class="text-sm text-slate-400 mb-4 h-24 overflow-hidden">
-                        Full-stack dashboard for academic management with secure RESTful APIs.
-                    </p>
-                    <div class="flex flex-wrap gap-2 text-xs font-mono text-accent">
-                        <span>Node.js</span><span>Express</span><span>CRUD</span>
-                    </div>
-                </div>
-            </div>
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-value">Bhimavaram, Andhra Pradesh</span>
         </div>
-    </section>
-
-    <section id="skills" class="py-20">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white mb-12 text-center"><span class="text-accent">04.</span> Technical Skills</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-code text-accent mr-2"></i> Programming</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">Python</span>
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">C</span>
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">JavaScript</span>
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">SQL</span>
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">HTML/CSS</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-white mb-4"><i class="fas fa-tools text-accent mr-2"></i> Tools & Concepts</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">Machine Learning</span>
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">Tableau</span>
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">DSA</span>
-                        <span class="bg-secondary px-4 py-2 rounded-lg text-sm text-slate-300 border border-slate-700">Time-Series Analysis</span>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-12 pt-12 border-t border-slate-800">
-                <h3 class="text-xl font-semibold text-white mb-6 text-center">Certifications</h3>
-                <div class="flex flex-wrap justify-center gap-4 text-xs md:text-sm">
-                    <span class="text-slate-400"><strong class="text-white">ISRO:</strong> Remote Sensing</span>
-                    <span class="text-slate-700">|</span>
-                    <span class="text-slate-400"><strong class="text-white">NPTEL:</strong> Software Testing</span>
-                    <span class="text-slate-700">|</span>
-                    <span class="text-slate-400"><strong class="text-white">Deloitte:</strong> Data Analytics</span>
-                    <span class="text-slate-700">|</span>
-                    <span class="text-slate-400"><strong class="text-white">Infosys:</strong> Java</span>
-                </div>
-            </div>
+        <div class="detail-row">
+          <span class="detail-label">Status</span>
+          <span class="detail-value highlight">Open to Opportunities</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact" class="py-20 bg-secondary/20">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white mb-12 text-center">Get In Touch</h2>
-            <div class="glass-card p-8 rounded-2xl max-w-2xl mx-auto">
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="3cc765f6-d07e-421a-b01b-046fa712f510">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm text-slate-400 mb-2">Name</label>
-                            <input type="text" name="name" required class="w-full bg-primary/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-slate-400 mb-2">Email</label>
-                            <input type="email" name="email" required class="w-full bg-primary/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition">
-                        </div>
-                    </div>
-                    <div class="mt-6 mb-6"> 
-                        <label class="block text-sm text-slate-400 mb-2">Message</label>
-                        <textarea name="message" rows="4" required class="w-full bg-primary/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-accent text-primary font-bold py-4 rounded-lg hover:bg-accentHover transition shadow-lg shadow-accent/20">Send Message</button>
-                </form>
-            </div>
-            <footer class="mt-20 text-center text-slate-600 text-sm">
-                <p>Designed & Built by Rohitha Cherukuvada | © 2026</p>
-                <div class="mt-4 space-x-4 text-xl">
-                    <a href="https://www.linkedin.com/in/rohitha-cherukuvada-6168b3318" target="_blank" class="hover:text-accent transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Rohitha-cherukuvada" target="_blank" class="hover:text-accent transition"><i class="fab fa-github"></i></a>
-                </div>
-            </footer>
+  <!-- Skills -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-category">Programming Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">C</span>
+          <span class="tag">SQL</span>
         </div>
-    </section>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Data Analysis & Visualization</div>
+        <div class="skill-tags">
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Time-Series</span>
+          <span class="tag">Data Viz</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">AI / ML Concepts</div>
+        <div class="skill-tags">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Clustering</span>
+          <span class="tag">Classification</span>
+          <span class="tag">Regression</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Web Development</div>
+        <div class="skill-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">JWT</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Testing & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">AccelQ</span>
+          <span class="tag">Automation Testing</span>
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">DSA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Software Testing Intern</div>
+          <div class="exp-company">Qentelli</div>
+        </div>
+        <span class="exp-date">May 2025 – Jul 2025</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Automated functional test cases using the AccelQ automation testing framework for web-based applications, improving release efficiency and reducing manual testing effort.</li>
+        <li>Designed and executed end-to-end test scenarios to validate core application workflows, identify edge cases, and ensure software reliability.</li>
+        <li>Collaborated with development teams following Agile methodology, gaining hands-on exposure to industry-standard QA processes and sprint-based delivery.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="project-badge">UIDAI Hackathon 2026</span>
+        <div class="project-title">Aadhaar Biometric Infrastructure Stress Analysis</div>
+        <div class="project-subtitle">National-Scale Data Analytics Project · 2026</div>
+        <p class="project-desc">
+          Analyzed 1.8M+ Aadhaar biometric update records to identify spatio-temporal infrastructure stress patterns across Indian states and districts. Engineered custom metrics BUIS and DSI to detect workload spikes via time-series analysis, and delivered state-month heatmaps for government resource planning.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Pandas</span>
+          <span class="stack-tag">NumPy</span>
+          <span class="stack-tag">Time-Series</span>
+          <span class="stack-tag">Matplotlib</span>
+          <span class="stack-tag">Data Viz</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-badge green">Full-Stack App</span>
+        <div class="project-title">Timetable Management Dashboard</div>
+        <div class="project-subtitle">Full-Stack Web Application · 2025</div>
+        <p class="project-desc">
+          Built a centralized academic timetable management system with JWT-based authentication and role-based access control. Engineered RESTful APIs with complete CRUD operations, and implemented conflict-aware scheduling with real-time faculty collision validation.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">Express.js</span>
+          <span class="stack-tag">MongoDB</span>
+          <span class="stack-tag">REST APIs</span>
+          <span class="stack-tag">JWT</span>
+          <span class="stack-tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Achievements</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="achievements-list">
+      <div class="achievement-item">
+        <span class="achievement-icon">🏆</span>
+        <div>
+          <div class="achievement-title">UIDAI Data Hackathon 2026</div>
+          <p class="achievement-desc">Submitted a full analytical project on spatio-temporal stress analysis of Aadhaar biometric infrastructure at a national level, processing over 1.8M records.</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <span class="achievement-icon">⚡</span>
+        <div>
+          <div class="achievement-title">ACM-W Core Team Member</div>
+          <p class="achievement-desc">Co-organized "Visualize the Invisible – Where Algorithms Come Alive", a technical event focused on DSA visualization and student engagement.</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <span class="achievement-icon">🚀</span>
+        <div>
+          <div class="achievement-title">GDG Internal Hackathon</div>
+          <p class="achievement-desc">Developed a working prototype for the Google Solution Challenge, demonstrating rapid prototyping and collaborative problem-solving under tight timelines.</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <span class="achievement-icon">📊</span>
+        <div>
+          <div class="achievement-title">Deloitte Data Analytics Job Simulation</div>
+          <p class="achievement-desc">Built interactive Tableau dashboards applying industry-grade analytics practices to real-world business scenarios, completing the full simulation program.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-header" style="justify-content:center; text-align:center; flex-direction:column; gap:0.5rem;">
+      <span class="section-num">06</span>
+      <h2>Get In Touch</h2>
+    </div>
+    <p class="contact-intro">
+      I'm currently open to internship opportunities and project collaborations in AI, ML, and Data Science. Feel free to reach out!
+    </p>
+    <div class="contact-links">
+      <a href="mailto:rohithacherukuvada@gmail.com" class="contact-card">
+        <span class="contact-icon">✉</span>
+        rohithacherukuvada@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/rohitha-cherukuvada-6168b3318" target="_blank" class="contact-card">
+        <span class="contact-icon">💼</span>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Rohitha-cherukuvada" target="_blank" class="contact-card">
+        <span class="contact-icon">⌥</span>
+        GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Designed &amp; Built by Rohitha Cherukuvada &nbsp;·&nbsp; 2026</p>
+  </footer>
+
 </body>
 </html>
