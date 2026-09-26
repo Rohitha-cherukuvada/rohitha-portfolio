@@ -412,7 +412,10 @@
       position: relative;
       overflow: hidden;
       transition: all 0.3s;
+      margin-bottom: 1.5rem;
     }
+
+    .exp-card:last-child { margin-bottom: 0; }
 
     .exp-card::after {
       content: '';
@@ -543,6 +546,12 @@
       background: rgba(6,214,160,0.1);
       border-color: rgba(6,214,160,0.3);
       color: var(--accent3);
+    }
+
+    .project-badge.purple {
+      background: rgba(124,58,237,0.1);
+      border-color: rgba(124,58,237,0.3);
+      color: var(--accent2);
     }
 
     .project-title {
@@ -780,7 +789,7 @@
       AI &amp; Data Science Engineer<span class="cursor"></span>
     </p>
     <p class="hero-desc fade-up delay-4">
-      B.Tech student specializing in Artificial Intelligence &amp; Data Science. I build data-driven solutions — from analyzing millions of records to full-stack applications.
+      B.Tech student specializing in Artificial Intelligence &amp; Data Science. I build data-driven solutions — from analyzing millions of records to full-stack and GenAI-powered applications.
     </p>
     <div class="hero-stats fade-up delay-4">
       <div class="stat">
@@ -792,7 +801,7 @@
         <span class="stat-label">Records Analyzed</span>
       </div>
       <div class="stat">
-        <span class="stat-num">2<span>+</span></span>
+        <span class="stat-num">3<span>+</span></span>
         <span class="stat-label">Projects Shipped</span>
       </div>
     </div>
@@ -816,7 +825,7 @@
     <div class="about-grid">
       <div class="about-text">
         <p>I'm a 4th-year B.Tech student pursuing Computer Science Engineering with a specialization in Artificial Intelligence &amp; Data Science at Shri Vishnu Engineering College for Women, Bhimavaram.</p>
-        <p>My work lives at the intersection of data analysis, machine learning, and full-stack development. I've worked on national-scale datasets through the UIDAI Hackathon 2026 and gained industry exposure through my internship at Qentelli.</p>
+        <p>My work lives at the intersection of data analysis, machine learning, GenAI, and full-stack development. I've worked on national-scale datasets through the UIDAI Hackathon 2026, gained industry exposure through my internship at Qentelli, and completed an NSQF Level 6 Generative AI training program with SkillDzire and APSCHE.</p>
         <p>Beyond technical work, I'm an active member of ACM and GDG — contributing to the tech community through events, hackathons, and collaborative problem-solving.</p>
       </div>
       <div class="about-details">
@@ -882,6 +891,17 @@
           <span class="tag">Clustering</span>
           <span class="tag">Classification</span>
           <span class="tag">Regression</span>
+          <span class="tag">DSA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">AI & Prompt Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">Generative AI Tools</span>
+          <span class="tag">Google Antigravity</span>
+          <span class="tag">Agentic AI Development</span>
+          <span class="tag">Responsible AI Practices</span>
         </div>
       </div>
       <div class="skill-card">
@@ -890,6 +910,7 @@
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
           <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
           <span class="tag">Node.js</span>
           <span class="tag">Express.js</span>
           <span class="tag">MongoDB</span>
@@ -903,7 +924,6 @@
           <span class="tag">AccelQ</span>
           <span class="tag">Automation Testing</span>
           <span class="tag">Agile / Scrum</span>
-          <span class="tag">DSA</span>
         </div>
       </div>
     </div>
@@ -930,6 +950,18 @@
         <li>Collaborated with development teams following Agile methodology, gaining hands-on exposure to industry-standard QA processes and sprint-based delivery.</li>
       </ul>
     </div>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Generative AI Intern (Training)</div>
+          <div class="exp-company">SkillDzire</div>
+        </div>
+        <span class="exp-date">May 2026 – Jul 2026</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Completed a structured NSQF Level 6 training program on Generative AI with LLMs, organized in collaboration with APSCHE, with certification awarded following an MCQ-based assessment.</li>
+      </ul>
+    </div>
   </section>
 
   <!-- Projects -->
@@ -945,7 +977,7 @@
         <div class="project-title">Aadhaar Biometric Infrastructure Stress Analysis</div>
         <div class="project-subtitle">National-Scale Data Analytics Project · 2026</div>
         <p class="project-desc">
-          Analyzed 1.8M+ Aadhaar biometric update records to identify spatio-temporal infrastructure stress patterns across Indian states and districts. Engineered custom metrics BUIS and DSI to detect workload spikes via time-series analysis, and delivered state-month heatmaps for government resource planning.
+          Analyzed 1.8M+ Aadhaar biometric update records to identify spatio-temporal infrastructure stress patterns across Indian states and districts. Engineered custom metrics BUIS (Biometric Update Infrastructure Score) and DSI (District Stress Index) to detect and benchmark workload spikes via time-series analysis, and delivered state-month heatmaps and district-level dashboards for early-warning systems and government resource planning.
         </p>
         <div class="project-stack">
           <span class="stack-tag">Python</span>
@@ -962,7 +994,7 @@
         <div class="project-title">Timetable Management Dashboard</div>
         <div class="project-subtitle">Full-Stack Web Application · 2025</div>
         <p class="project-desc">
-          Built a centralized academic timetable management system with JWT-based authentication and role-based access control. Engineered RESTful APIs with complete CRUD operations, and implemented conflict-aware scheduling with real-time faculty collision validation.
+          Built a centralized academic timetable management system with JWT-based authentication and role-based access control. Engineered RESTful APIs with full CRUD operations using Express.js and MongoDB, added multi-department faculty support with safe working-hour limits to prevent overload, and am currently automating timetable generation with real-time conflict checks and 3-period lab scheduling.
         </p>
         <div class="project-stack">
           <span class="stack-tag">Node.js</span>
@@ -971,6 +1003,22 @@
           <span class="stack-tag">REST APIs</span>
           <span class="stack-tag">JWT</span>
           <span class="stack-tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-badge purple">H2S PromptWars Hackathon</span>
+        <div class="project-title">Verdira – Carbon Footprint Tracker</div>
+        <div class="project-subtitle">Full-Stack GenAI App · Built in ~2.5 hours</div>
+        <p class="project-desc">
+          Built and deployed a full-stack carbon-tracking app in ~2.5 hours using a no-login, local-storage-first design for sub-30-second daily logging. Integrated the Gemini API through a secured backend to keep the API key off the frontend, and used Google Antigravity for agentic-assisted development — independently catching and fixing a model-reference error and a near-exposed API key.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">Express.js</span>
+          <span class="stack-tag">Gemini API</span>
+          <span class="stack-tag">Google Antigravity</span>
+          <span class="stack-tag">Render</span>
         </div>
       </div>
     </div>
@@ -1010,6 +1058,20 @@
         <div>
           <div class="achievement-title">Deloitte Data Analytics Job Simulation</div>
           <p class="achievement-desc">Built interactive Tableau dashboards applying industry-grade analytics practices to real-world business scenarios, completing the full simulation program.</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <span class="achievement-icon">🎓</span>
+        <div>
+          <div class="achievement-title">Generative AI (NSQF Level 6) — SkillDzire &amp; APSCHE</div>
+          <p class="achievement-desc">Completed a structured training program on Generative AI with LLMs and earned certification following an MCQ-based assessment.</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <span class="achievement-icon">🏅</span>
+        <div>
+          <div class="achievement-title">Microsoft AI Skills Fest 2026</div>
+          <p class="achievement-desc">Completed 5 learning playlists on applied AI and earned a Microsoft Credly badge.</p>
         </div>
       </div>
     </div>
